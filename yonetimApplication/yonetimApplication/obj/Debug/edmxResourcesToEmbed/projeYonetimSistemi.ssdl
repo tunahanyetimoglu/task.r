@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjeGorevTakipSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjeGorevTakipSistemi.dbo.tbl_Login' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_Login">
+    <Key>
+      <PropertyRef Name="mail" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Manager">
+    <Key>
+      <PropertyRef Name="managerId" />
+    </Key>
+    <Property Name="managerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="managerName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="managerSurname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="managerTeam" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="managerMail" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="managerStartDate" Type="date" Nullable="false" />
+    <Property Name="managerLocation" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Personel">
+    <Key>
+      <PropertyRef Name="personelId" />
+    </Key>
+    <Property Name="personelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personelName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="personelSurname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="personelTeam" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="personelMail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="personelStartDate" Type="date" Nullable="false" />
+    <Property Name="personelLocation" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjeGorevTakipSistemi.dbo.tbl_PersonProject' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_PersonProject">
+    <Key>
+      <PropertyRef Name="personelId" />
+      <PropertyRef Name="projectId" />
+    </Key>
+    <Property Name="personelId" Type="int" Nullable="false" />
+    <Property Name="projectId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Project">
+    <Key>
+      <PropertyRef Name="projectId" />
+    </Key>
+    <Property Name="projectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectProjectManagerId" Type="int" Nullable="false" />
+    <Property Name="projectName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="projectDescription" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="projectStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="projectStartDate" Type="date" Nullable="false" />
+    <Property Name="projectDeadLine" Type="date" Nullable="false" />
+    <Property Name="projectLastUpdated" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ProjectManager">
+    <Key>
+      <PropertyRef Name="projectManagerId" />
+    </Key>
+    <Property Name="projectManagerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectManagerName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="projectManagerSurname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="projectManagerTeam" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="projectManagerEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="projectManagerStartDate" Type="date" Nullable="false" />
+    <Property Name="projectManagerLocation" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_TaskforPersonel">
+    <Key>
+      <PropertyRef Name="taskId" />
+    </Key>
+    <Property Name="taskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="taskProjectId" Type="int" Nullable="false" />
+    <Property Name="taskPersonId" Type="int" Nullable="false" />
+    <Property Name="taskName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="taskDescription" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="taskStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="taskDeadLine" Type="date" Nullable="false" />
+    <Property Name="taskLastUpdated" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_TaskforProjectManager">
+    <Key>
+      <PropertyRef Name="taskId" />
+    </Key>
+    <Property Name="taskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="taskProjectId" Type="int" />
+    <Property Name="taskProjectManagerId" Type="int" />
+    <Property Name="taskName" Type="varchar" MaxLength="50" />
+    <Property Name="taskDescription" Type="varchar" MaxLength="255" />
+    <Property Name="taskStatus" Type="varchar" MaxLength="20" />
+    <Property Name="taskDeadLine" Type="date" />
+    <Property Name="taskLastUpdated" Type="date" />
+  </EntityType>
+  <Association Name="FK_tbl_PersonProject_tbl_Personel">
+    <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="1" />
+    <End Role="tbl_PersonProject" Type="Self.tbl_PersonProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Personel">
+        <PropertyRef Name="personelId" />
+      </Principal>
+      <Dependent Role="tbl_PersonProject">
+        <PropertyRef Name="personelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_PersonProject_tbl_Project">
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+    <End Role="tbl_PersonProject" Type="Self.tbl_PersonProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Project">
+        <PropertyRef Name="projectId" />
+      </Principal>
+      <Dependent Role="tbl_PersonProject">
+        <PropertyRef Name="projectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Project_tbl_ProjectManager">
+    <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="1" />
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ProjectManager">
+        <PropertyRef Name="projectManagerId" />
+      </Principal>
+      <Dependent Role="tbl_Project">
+        <PropertyRef Name="projectProjectManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Task_tbl_Personel">
+    <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="1" />
+    <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Personel">
+        <PropertyRef Name="personelId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforPersonel">
+        <PropertyRef Name="taskPersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Task_tbl_Project">
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+    <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Project">
+        <PropertyRef Name="projectId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforPersonel">
+        <PropertyRef Name="taskProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_TaskforProjectManager_tbl_Project">
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="0..1" />
+    <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Project">
+        <PropertyRef Name="projectId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforProjectManager">
+        <PropertyRef Name="taskProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+    <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="0..1" />
+    <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ProjectManager">
+        <PropertyRef Name="projectManagerId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforProjectManager">
+        <PropertyRef Name="taskProjectManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_Task" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="managerName" Type="varchar" Mode="In" />
+    <Parameter Name="managerSurname" Type="varchar" Mode="In" />
+    <Parameter Name="managerTeam" Type="varchar" Mode="In" />
+    <Parameter Name="managerMail" Type="varchar" Mode="In" />
+    <Parameter Name="managerStartDate" Type="date" Mode="In" />
+    <Parameter Name="managerLocation" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="personelName" Type="varchar" Mode="In" />
+    <Parameter Name="personelSurname" Type="varchar" Mode="In" />
+    <Parameter Name="personelTeam" Type="varchar" Mode="In" />
+    <Parameter Name="personelMail" Type="varchar" Mode="In" />
+    <Parameter Name="personelStartDate" Type="date" Mode="In" />
+    <Parameter Name="personelLocation" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="projectProjectManagerId" Type="int" Mode="In" />
+    <Parameter Name="projectName" Type="varchar" Mode="In" />
+    <Parameter Name="projectDescription" Type="varchar" Mode="In" />
+    <Parameter Name="projectStatus" Type="varchar" Mode="In" />
+    <Parameter Name="projectStartDate" Type="date" Mode="In" />
+    <Parameter Name="projectDeadLine" Type="date" Mode="In" />
+    <Parameter Name="projectLastUpdated" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="projectManagerName" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerSurname" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerTeam" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerEmail" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerStartDate" Type="date" Mode="In" />
+    <Parameter Name="projectManagerLocation" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_Task" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="taskProjectId" Type="int" Mode="In" />
+    <Parameter Name="taskPersonId" Type="int" Mode="In" />
+    <Parameter Name="taskName" Type="varchar" Mode="In" />
+    <Parameter Name="taskDescription" Type="varchar" Mode="In" />
+    <Parameter Name="taskStatus" Type="varchar" Mode="In" />
+    <Parameter Name="taskDeadLine" Type="date" Mode="In" />
+    <Parameter Name="taskLastUpdated" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_select_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_select_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_select_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_select_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_select_Task" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_update_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="managerName" Type="varchar" Mode="In" />
+    <Parameter Name="managerSurname" Type="varchar" Mode="In" />
+    <Parameter Name="managerTeam" Type="varchar" Mode="In" />
+    <Parameter Name="managerMail" Type="varchar" Mode="In" />
+    <Parameter Name="managerStartDate" Type="date" Mode="In" />
+    <Parameter Name="managerLocation" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_update_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="personelName" Type="varchar" Mode="In" />
+    <Parameter Name="personelSurname" Type="varchar" Mode="In" />
+    <Parameter Name="personelTeam" Type="varchar" Mode="In" />
+    <Parameter Name="personelMail" Type="varchar" Mode="In" />
+    <Parameter Name="personelStartDate" Type="date" Mode="In" />
+    <Parameter Name="personelLocation" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_update_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="projectProjectManagerId" Type="int" Mode="In" />
+    <Parameter Name="projectName" Type="varchar" Mode="In" />
+    <Parameter Name="projectDescription" Type="varchar" Mode="In" />
+    <Parameter Name="projectStatus" Type="varchar" Mode="In" />
+    <Parameter Name="projectStartDate" Type="date" Mode="In" />
+    <Parameter Name="projectDeadLine" Type="date" Mode="In" />
+    <Parameter Name="projectLastUpdated" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_update_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="projectManagerName" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerSurname" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerTeam" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerEmail" Type="varchar" Mode="In" />
+    <Parameter Name="projectManagerStartDate" Type="date" Mode="In" />
+    <Parameter Name="projectManagerLocation" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_update_Task" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="taskProjectId" Type="int" Mode="In" />
+    <Parameter Name="taskPersonId" Type="int" Mode="In" />
+    <Parameter Name="taskName" Type="varchar" Mode="In" />
+    <Parameter Name="taskDescription" Type="varchar" Mode="In" />
+    <Parameter Name="taskStatus" Type="varchar" Mode="In" />
+    <Parameter Name="taskDeadLine" Type="date" Mode="In" />
+    <Parameter Name="taskLastUpdated" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ProjeGorevTakipSistemiModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Manager" EntityType="Self.tbl_Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Personel" EntityType="Self.tbl_Personel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Project" EntityType="Self.tbl_Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ProjectManager" EntityType="Self.tbl_ProjectManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_TaskforPersonel" EntityType="Self.tbl_TaskforPersonel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_TaskforProjectManager" EntityType="Self.tbl_TaskforProjectManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Login" EntityType="Self.tbl_Login" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_Login].[mail] AS [mail], 
+    [tbl_Login].[password] AS [password], 
+    [tbl_Login].[role] AS [role]
+    FROM [dbo].[tbl_Login] AS [tbl_Login]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_PersonProject" EntityType="Self.tbl_PersonProject" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_PersonProject].[personelId] AS [personelId], 
+    [tbl_PersonProject].[projectId] AS [projectId]
+    FROM [dbo].[tbl_PersonProject] AS [tbl_PersonProject]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tbl_PersonProject_tbl_Personel" Association="Self.FK_tbl_PersonProject_tbl_Personel">
+      <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+      <End Role="tbl_PersonProject" EntitySet="tbl_PersonProject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_PersonProject_tbl_Project" Association="Self.FK_tbl_PersonProject_tbl_Project">
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+      <End Role="tbl_PersonProject" EntitySet="tbl_PersonProject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Project_tbl_ProjectManager" Association="Self.FK_tbl_Project_tbl_ProjectManager">
+      <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Task_tbl_Personel" Association="Self.FK_tbl_Task_tbl_Personel">
+      <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+      <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Task_tbl_Project" Association="Self.FK_tbl_Task_tbl_Project">
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+      <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_Project" Association="Self.FK_tbl_TaskforProjectManager_tbl_Project">
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+      <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager" Association="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+      <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+      <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

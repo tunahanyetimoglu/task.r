@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjeGorevTakipSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_Manager">
+    <Key>
+      <PropertyRef Name="managerId" />
+    </Key>
+    <Property Name="managerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="managerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="managerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="managerTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="managerMail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="managerStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="managerLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Personel">
+    <Key>
+      <PropertyRef Name="personelId" />
+    </Key>
+    <Property Name="personelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personelSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personelTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personelMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personelStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="personelLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_TaskforPersonel" Relationship="Self.FK_tbl_Task_tbl_Personel" FromRole="tbl_Personel" ToRole="tbl_TaskforPersonel" />
+    <NavigationProperty Name="tbl_Project" Relationship="Self.tbl_PersonProject" FromRole="tbl_Personel" ToRole="tbl_Project" />
+  </EntityType>
+  <EntityType Name="tbl_Project">
+    <Key>
+      <PropertyRef Name="projectId" />
+    </Key>
+    <Property Name="projectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="projectProjectManagerId" Type="Int32" Nullable="false" />
+    <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="projectDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="projectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="projectStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="projectDeadLine" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="projectLastUpdated" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tbl_ProjectManager" Relationship="Self.FK_tbl_Project_tbl_ProjectManager" FromRole="tbl_Project" ToRole="tbl_ProjectManager" />
+    <NavigationProperty Name="tbl_TaskforPersonel" Relationship="Self.FK_tbl_Task_tbl_Project" FromRole="tbl_Project" ToRole="tbl_TaskforPersonel" />
+    <NavigationProperty Name="tbl_TaskforProjectManager" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_Project" FromRole="tbl_Project" ToRole="tbl_TaskforProjectManager" />
+    <NavigationProperty Name="tbl_Personel" Relationship="Self.tbl_PersonProject" FromRole="tbl_Project" ToRole="tbl_Personel" />
+  </EntityType>
+  <EntityType Name="tbl_ProjectManager">
+    <Key>
+      <PropertyRef Name="projectManagerId" />
+    </Key>
+    <Property Name="projectManagerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="projectManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="projectManagerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="projectManagerTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="projectManagerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="projectManagerStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="projectManagerLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_Project" Relationship="Self.FK_tbl_Project_tbl_ProjectManager" FromRole="tbl_ProjectManager" ToRole="tbl_Project" />
+    <NavigationProperty Name="tbl_TaskforProjectManager" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager" FromRole="tbl_ProjectManager" ToRole="tbl_TaskforProjectManager" />
+  </EntityType>
+  <EntityType Name="tbl_TaskforPersonel">
+    <Key>
+      <PropertyRef Name="taskId" />
+    </Key>
+    <Property Name="taskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taskProjectId" Type="Int32" Nullable="false" />
+    <Property Name="taskPersonId" Type="Int32" Nullable="false" />
+    <Property Name="taskName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="taskDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="taskStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="taskDeadLine" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="taskLastUpdated" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tbl_Personel" Relationship="Self.FK_tbl_Task_tbl_Personel" FromRole="tbl_TaskforPersonel" ToRole="tbl_Personel" />
+    <NavigationProperty Name="tbl_Project" Relationship="Self.FK_tbl_Task_tbl_Project" FromRole="tbl_TaskforPersonel" ToRole="tbl_Project" />
+  </EntityType>
+  <EntityType Name="tbl_TaskforProjectManager">
+    <Key>
+      <PropertyRef Name="taskId" />
+    </Key>
+    <Property Name="taskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taskProjectId" Type="Int32" />
+    <Property Name="taskProjectManagerId" Type="Int32" />
+    <Property Name="taskName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="taskDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="taskStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="taskDeadLine" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="taskLastUpdated" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tbl_Project" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_Project" FromRole="tbl_TaskforProjectManager" ToRole="tbl_Project" />
+    <NavigationProperty Name="tbl_ProjectManager" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager" FromRole="tbl_TaskforProjectManager" ToRole="tbl_ProjectManager" />
+  </EntityType>
+  <EntityType Name="tbl_Login">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="mail" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbl_Task_tbl_Personel">
+    <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="1" />
+    <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Personel">
+        <PropertyRef Name="personelId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforPersonel">
+        <PropertyRef Name="taskPersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Project_tbl_ProjectManager">
+    <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="1" />
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ProjectManager">
+        <PropertyRef Name="projectManagerId" />
+      </Principal>
+      <Dependent Role="tbl_Project">
+        <PropertyRef Name="projectProjectManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Task_tbl_Project">
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+    <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Project">
+        <PropertyRef Name="projectId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforPersonel">
+        <PropertyRef Name="taskProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_TaskforProjectManager_tbl_Project">
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="0..1" />
+    <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Project">
+        <PropertyRef Name="projectId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforProjectManager">
+        <PropertyRef Name="taskProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+    <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="0..1" />
+    <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ProjectManager">
+        <PropertyRef Name="projectManagerId" />
+      </Principal>
+      <Dependent Role="tbl_TaskforProjectManager">
+        <PropertyRef Name="taskProjectManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_PersonProject">
+    <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="*" />
+    <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ProjeGorevTakipSistemiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tbl_Manager" EntityType="Self.tbl_Manager" />
+    <EntitySet Name="tbl_Personel" EntityType="Self.tbl_Personel" />
+    <EntitySet Name="tbl_Project" EntityType="Self.tbl_Project" />
+    <EntitySet Name="tbl_ProjectManager" EntityType="Self.tbl_ProjectManager" />
+    <EntitySet Name="tbl_TaskforPersonel" EntityType="Self.tbl_TaskforPersonel" />
+    <EntitySet Name="tbl_TaskforProjectManager" EntityType="Self.tbl_TaskforProjectManager" />
+    <EntitySet Name="tbl_Login" EntityType="Self.tbl_Login" />
+    <AssociationSet Name="FK_tbl_Task_tbl_Personel" Association="Self.FK_tbl_Task_tbl_Personel">
+      <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+      <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Project_tbl_ProjectManager" Association="Self.FK_tbl_Project_tbl_ProjectManager">
+      <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Task_tbl_Project" Association="Self.FK_tbl_Task_tbl_Project">
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+      <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_Project" Association="Self.FK_tbl_TaskforProjectManager_tbl_Project">
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+      <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager" Association="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+      <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+      <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_PersonProject" Association="Self.tbl_PersonProject">
+      <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+      <End Role="tbl_Project" EntitySet="tbl_Project" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_delete_Manager">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_delete_Personel">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_delete_Project">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_delete_ProjectManager">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_delete_TaskforPersonel" />
+    <FunctionImport Name="sp_delete_TaskforProjectManager" />
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_excludePersonelFromProject">
+      <Parameter Name="personelId" Mode="In" Type="Int32" />
+      <Parameter Name="projectId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAvailablePersonelByProjectId" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_getAvailablePersonelByProjectId_Result)">
+      <Parameter Name="projectId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getPersonelByProjectId" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_getPersonelByProjectId_Result)">
+      <Parameter Name="projectId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getProjectsByPersonelId" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_getProjectsByPersonelId_Result)">
+      <Parameter Name="personelId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insert_Manager">
+      <Parameter Name="managerName" Mode="In" Type="String" />
+      <Parameter Name="managerSurname" Mode="In" Type="String" />
+      <Parameter Name="managerTeam" Mode="In" Type="String" />
+      <Parameter Name="managerMail" Mode="In" Type="String" />
+      <Parameter Name="managerStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="managerLocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insert_Personel">
+      <Parameter Name="personelName" Mode="In" Type="String" />
+      <Parameter Name="personelSurname" Mode="In" Type="String" />
+      <Parameter Name="personelTeam" Mode="In" Type="String" />
+      <Parameter Name="personelMail" Mode="In" Type="String" />
+      <Parameter Name="personelStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="personelLocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insert_Project">
+      <Parameter Name="projectProjectManagerId" Mode="In" Type="Int32" />
+      <Parameter Name="projectName" Mode="In" Type="String" />
+      <Parameter Name="projectDescription" Mode="In" Type="String" />
+      <Parameter Name="projectStatus" Mode="In" Type="String" />
+      <Parameter Name="projectStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="projectDeadLine" Mode="In" Type="DateTime" />
+      <Parameter Name="projectLastUpdated" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insert_ProjectManager">
+      <Parameter Name="projectManagerName" Mode="In" Type="String" />
+      <Parameter Name="projectManagerSurname" Mode="In" Type="String" />
+      <Parameter Name="projectManagerTeam" Mode="In" Type="String" />
+      <Parameter Name="projectManagerEmail" Mode="In" Type="String" />
+      <Parameter Name="projectManagerStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="projectManagerLocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insert_TaskforPersonel">
+      <Parameter Name="taskProjectId" Mode="In" Type="Int32" />
+      <Parameter Name="taskPersonId" Mode="In" Type="Int32" />
+      <Parameter Name="taskName" Mode="In" Type="String" />
+      <Parameter Name="taskDescription" Mode="In" Type="String" />
+      <Parameter Name="taskStatus" Mode="In" Type="String" />
+      <Parameter Name="taskDeadLine" Mode="In" Type="DateTime" />
+      <Parameter Name="taskLastUpdated" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insert_TaskforProjectManager">
+      <Parameter Name="taskProjectId" Mode="In" Type="Int32" />
+      <Parameter Name="taskPersonId" Mode="In" Type="Int32" />
+      <Parameter Name="taskName" Mode="In" Type="String" />
+      <Parameter Name="taskDescription" Mode="In" Type="String" />
+      <Parameter Name="taskStatus" Mode="In" Type="String" />
+      <Parameter Name="taskDeadLine" Mode="In" Type="DateTime" />
+      <Parameter Name="taskLastUpdated" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_select_Manager" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_Manager_Result)" />
+    <FunctionImport Name="sp_select_Personel" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_Personel_Result)" />
+    <FunctionImport Name="sp_select_Project" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_Project_Result)" />
+    <FunctionImport Name="sp_select_ProjectManager" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_ProjectManager_Result)" />
+    <FunctionImport Name="sp_select_TaskforPersonel" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_TaskforPersonel_Result)" />
+    <FunctionImport Name="sp_select_TaskforProjectManager" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_TaskforProjectManager_Result)" />
+    <FunctionImport Name="sp_tbl_Project_InsteadOfDelete">
+      <Parameter Name="projectId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_update_Manager">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="managerName" Mode="In" Type="String" />
+      <Parameter Name="managerSurname" Mode="In" Type="String" />
+      <Parameter Name="managerTeam" Mode="In" Type="String" />
+      <Parameter Name="managerMail" Mode="In" Type="String" />
+      <Parameter Name="managerStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="managerLocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_update_PASSWORD">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_update_Personel">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="personelName" Mode="In" Type="String" />
+      <Parameter Name="personelSurname" Mode="In" Type="String" />
+      <Parameter Name="personelTeam" Mode="In" Type="String" />
+      <Parameter Name="personelMail" Mode="In" Type="String" />
+      <Parameter Name="personelStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="personelLocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_update_Project">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="projectProjectManagerId" Mode="In" Type="Int32" />
+      <Parameter Name="projectName" Mode="In" Type="String" />
+      <Parameter Name="projectDescription" Mode="In" Type="String" />
+      <Parameter Name="projectStatus" Mode="In" Type="String" />
+      <Parameter Name="projectStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="projectDeadLine" Mode="In" Type="DateTime" />
+      <Parameter Name="projectLastUpdated" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_update_ProjectManager">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="projectManagerName" Mode="In" Type="String" />
+      <Parameter Name="projectManagerSurname" Mode="In" Type="String" />
+      <Parameter Name="projectManagerTeam" Mode="In" Type="String" />
+      <Parameter Name="projectManagerEmail" Mode="In" Type="String" />
+      <Parameter Name="projectManagerStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="projectManagerLocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_includePersoneltoProject">
+      <Parameter Name="personelId" Mode="In" Type="Int32" />
+      <Parameter Name="projectId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_getAvailablePersonelByProjectId_Result">
+    <Property Type="Int32" Name="personelId" Nullable="false" />
+    <Property Type="String" Name="personelName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelTeam" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelMail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="personelStartDate" Nullable="false" />
+    <Property Type="String" Name="personelLocation" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_getPersonelByProjectId_Result">
+    <Property Type="Int32" Name="personelId" Nullable="false" />
+    <Property Type="String" Name="personelName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelTeam" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelMail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="personelStartDate" Nullable="false" />
+    <Property Type="String" Name="personelLocation" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_getProjectsByPersonelId_Result">
+    <Property Type="Int32" Name="projectId" Nullable="false" />
+    <Property Type="Int32" Name="projectProjectManagerId" Nullable="false" />
+    <Property Type="String" Name="projectName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="projectDescription" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="projectStatus" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="projectStartDate" Nullable="false" />
+    <Property Type="DateTime" Name="projectDeadLine" Nullable="false" />
+    <Property Type="DateTime" Name="projectLastUpdated" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_select_Manager_Result">
+    <Property Type="Int32" Name="managerId" Nullable="false" />
+    <Property Type="String" Name="managerName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="managerSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="managerTeam" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="managerMail" Nullable="false" MaxLength="30" />
+    <Property Type="DateTime" Name="managerStartDate" Nullable="false" />
+    <Property Type="String" Name="managerLocation" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_select_Personel_Result">
+    <Property Type="Int32" Name="personelId" Nullable="false" />
+    <Property Type="String" Name="personelName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelTeam" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="personelMail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="personelStartDate" Nullable="false" />
+    <Property Type="String" Name="personelLocation" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_select_Project_Result">
+    <Property Type="Int32" Name="projectId" Nullable="false" />
+    <Property Type="Int32" Name="projectProjectManagerId" Nullable="false" />
+    <Property Type="String" Name="projectName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="projectDescription" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="projectStatus" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="projectStartDate" Nullable="false" />
+    <Property Type="DateTime" Name="projectDeadLine" Nullable="false" />
+    <Property Type="DateTime" Name="projectLastUpdated" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_select_ProjectManager_Result">
+    <Property Type="Int32" Name="projectManagerId" Nullable="false" />
+    <Property Type="String" Name="projectManagerName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="projectManagerSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="projectManagerTeam" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="projectManagerEmail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="projectManagerStartDate" Nullable="false" />
+    <Property Type="String" Name="projectManagerLocation" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_select_TaskforPersonel_Result">
+    <Property Type="Int32" Name="taskId" Nullable="false" />
+    <Property Type="Int32" Name="taskProjectId" Nullable="false" />
+    <Property Type="Int32" Name="taskPersonId" Nullable="false" />
+    <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="taskDescription" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="taskStatus" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="taskDeadLine" Nullable="false" />
+    <Property Type="DateTime" Name="taskLastUpdated" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_select_TaskforProjectManager_Result">
+    <Property Type="Int32" Name="taskId" Nullable="false" />
+    <Property Type="Int32" Name="taskProjectId" Nullable="true" />
+    <Property Type="Int32" Name="taskProjectManagerId" Nullable="true" />
+    <Property Type="String" Name="taskName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="taskDescription" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="taskStatus" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="taskDeadLine" Nullable="false" />
+    <Property Type="DateTime" Name="taskLastUpdated" Nullable="false" />
+  </ComplexType>
+</Schema>

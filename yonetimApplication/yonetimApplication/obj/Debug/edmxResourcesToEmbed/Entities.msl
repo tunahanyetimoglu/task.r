@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjeGorevTakipSistemiModelStoreContainer" CdmEntityContainer="ProjeGorevTakipSistemiEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Manager">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Manager">
+        <MappingFragment StoreEntitySet="tbl_Manager">
+          <ScalarProperty Name="managerId" ColumnName="managerId" />
+          <ScalarProperty Name="managerName" ColumnName="managerName" />
+          <ScalarProperty Name="managerSurname" ColumnName="managerSurname" />
+          <ScalarProperty Name="managerTeam" ColumnName="managerTeam" />
+          <ScalarProperty Name="managerMail" ColumnName="managerMail" />
+          <ScalarProperty Name="managerStartDate" ColumnName="managerStartDate" />
+          <ScalarProperty Name="managerLocation" ColumnName="managerLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Personel">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Personel">
+        <MappingFragment StoreEntitySet="tbl_Personel">
+          <ScalarProperty Name="personelId" ColumnName="personelId" />
+          <ScalarProperty Name="personelName" ColumnName="personelName" />
+          <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+          <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+          <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+          <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+          <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Project">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Project">
+        <MappingFragment StoreEntitySet="tbl_Project">
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="projectProjectManagerId" ColumnName="projectProjectManagerId" />
+          <ScalarProperty Name="projectName" ColumnName="projectName" />
+          <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+          <ScalarProperty Name="projectStatus" ColumnName="projectStatus" />
+          <ScalarProperty Name="projectStartDate" ColumnName="projectStartDate" />
+          <ScalarProperty Name="projectDeadLine" ColumnName="projectDeadLine" />
+          <ScalarProperty Name="projectLastUpdated" ColumnName="projectLastUpdated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ProjectManager">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_ProjectManager">
+        <MappingFragment StoreEntitySet="tbl_ProjectManager">
+          <ScalarProperty Name="projectManagerId" ColumnName="projectManagerId" />
+          <ScalarProperty Name="projectManagerName" ColumnName="projectManagerName" />
+          <ScalarProperty Name="projectManagerSurname" ColumnName="projectManagerSurname" />
+          <ScalarProperty Name="projectManagerTeam" ColumnName="projectManagerTeam" />
+          <ScalarProperty Name="projectManagerEmail" ColumnName="projectManagerEmail" />
+          <ScalarProperty Name="projectManagerStartDate" ColumnName="projectManagerStartDate" />
+          <ScalarProperty Name="projectManagerLocation" ColumnName="projectManagerLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_TaskforPersonel">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_TaskforPersonel">
+        <MappingFragment StoreEntitySet="tbl_TaskforPersonel">
+          <ScalarProperty Name="taskId" ColumnName="taskId" />
+          <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+          <ScalarProperty Name="taskPersonId" ColumnName="taskPersonId" />
+          <ScalarProperty Name="taskName" ColumnName="taskName" />
+          <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+          <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+          <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+          <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_TaskforProjectManager">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_TaskforProjectManager">
+        <MappingFragment StoreEntitySet="tbl_TaskforProjectManager">
+          <ScalarProperty Name="taskId" ColumnName="taskId" />
+          <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+          <ScalarProperty Name="taskProjectManagerId" ColumnName="taskProjectManagerId" />
+          <ScalarProperty Name="taskName" ColumnName="taskName" />
+          <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+          <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+          <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+          <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Login">
+      <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Login">
+        <MappingFragment StoreEntitySet="tbl_Login">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tbl_PersonProject" TypeName="ProjeGorevTakipSistemiModel.tbl_PersonProject" StoreEntitySet="tbl_PersonProject">
+      <EndProperty Name="tbl_Personel">
+        <ScalarProperty Name="personelId" ColumnName="personelId" />
+      </EndProperty>
+      <EndProperty Name="tbl_Project">
+        <ScalarProperty Name="projectId" ColumnName="projectId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_delete_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_Manager" />
+    <FunctionImportMapping FunctionImportName="sp_delete_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_Personel" />
+    <FunctionImportMapping FunctionImportName="sp_delete_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_ProjectManager" />
+    <FunctionImportMapping FunctionImportName="sp_delete_TaskforPersonel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_TaskforPersonel" />
+    <FunctionImportMapping FunctionImportName="sp_delete_TaskforProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_TaskforProjectManager" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_excludePersonelFromProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_excludePersonelFromProject" />
+    <FunctionImportMapping FunctionImportName="sp_getAvailablePersonelByProjectId" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_getAvailablePersonelByProjectId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_getAvailablePersonelByProjectId_Result">
+          <ScalarProperty Name="personelId" ColumnName="personelId" />
+          <ScalarProperty Name="personelName" ColumnName="personelName" />
+          <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+          <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+          <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+          <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+          <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getPersonelByProjectId" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_getPersonelByProjectId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_getPersonelByProjectId_Result">
+          <ScalarProperty Name="personelId" ColumnName="personelId" />
+          <ScalarProperty Name="personelName" ColumnName="personelName" />
+          <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+          <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+          <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+          <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+          <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getProjectsByPersonelId" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_getProjectsByPersonelId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_getProjectsByPersonelId_Result">
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="projectProjectManagerId" ColumnName="projectProjectManagerId" />
+          <ScalarProperty Name="projectName" ColumnName="projectName" />
+          <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+          <ScalarProperty Name="projectStatus" ColumnName="projectStatus" />
+          <ScalarProperty Name="projectStartDate" ColumnName="projectStartDate" />
+          <ScalarProperty Name="projectDeadLine" ColumnName="projectDeadLine" />
+          <ScalarProperty Name="projectLastUpdated" ColumnName="projectLastUpdated" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_includePersoneltoProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_includePersoneltoProject" />
+    <FunctionImportMapping FunctionImportName="sp_insert_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_Manager" />
+    <FunctionImportMapping FunctionImportName="sp_insert_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_Personel" />
+    <FunctionImportMapping FunctionImportName="sp_insert_Project" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_Project" />
+    <FunctionImportMapping FunctionImportName="sp_insert_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_ProjectManager" />
+    <FunctionImportMapping FunctionImportName="sp_insert_TaskforPersonel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_TaskforPersonel" />
+    <FunctionImportMapping FunctionImportName="sp_insert_TaskforProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_TaskforProjectManager" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_report_PersonnelinProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_report_PersonnelinProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_report_PersonnelinProject_Result">
+          <ScalarProperty Name="personelName" ColumnName="personelName" />
+          <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+          <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_report_TaskinProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_report_TaskinProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_report_TaskinProject_Result">
+          <ScalarProperty Name="taskName" ColumnName="taskName" />
+          <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+          <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_select_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_Manager">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_Manager_Result">
+          <ScalarProperty Name="managerId" ColumnName="managerId" />
+          <ScalarProperty Name="managerName" ColumnName="managerName" />
+          <ScalarProperty Name="managerSurname" ColumnName="managerSurname" />
+          <ScalarProperty Name="managerTeam" ColumnName="managerTeam" />
+          <ScalarProperty Name="managerMail" ColumnName="managerMail" />
+          <ScalarProperty Name="managerStartDate" ColumnName="managerStartDate" />
+          <ScalarProperty Name="managerLocation" ColumnName="managerLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_select_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_Personel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_Personel_Result">
+          <ScalarProperty Name="personelId" ColumnName="personelId" />
+          <ScalarProperty Name="personelName" ColumnName="personelName" />
+          <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+          <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+          <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+          <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+          <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_select_Project" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_Project">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_Project_Result">
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="projectProjectManagerId" ColumnName="projectProjectManagerId" />
+          <ScalarProperty Name="projectName" ColumnName="projectName" />
+          <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+          <ScalarProperty Name="projectStatus" ColumnName="projectStatus" />
+          <ScalarProperty Name="projectStartDate" ColumnName="projectStartDate" />
+          <ScalarProperty Name="projectDeadLine" ColumnName="projectDeadLine" />
+          <ScalarProperty Name="projectLastUpdated" ColumnName="projectLastUpdated" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_select_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_ProjectManager">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_ProjectManager_Result">
+          <ScalarProperty Name="projectManagerId" ColumnName="projectManagerId" />
+          <ScalarProperty Name="projectManagerName" ColumnName="projectManagerName" />
+          <ScalarProperty Name="projectManagerSurname" ColumnName="projectManagerSurname" />
+          <ScalarProperty Name="projectManagerTeam" ColumnName="projectManagerTeam" />
+          <ScalarProperty Name="projectManagerEmail" ColumnName="projectManagerEmail" />
+          <ScalarProperty Name="projectManagerStartDate" ColumnName="projectManagerStartDate" />
+          <ScalarProperty Name="projectManagerLocation" ColumnName="projectManagerLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_select_TaskforPersonel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_TaskforPersonel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_TaskforPersonel_Result">
+          <ScalarProperty Name="taskId" ColumnName="taskId" />
+          <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+          <ScalarProperty Name="taskPersonId" ColumnName="taskPersonId" />
+          <ScalarProperty Name="taskName" ColumnName="taskName" />
+          <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+          <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+          <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+          <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_select_TaskforProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_TaskforProjectManager">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_TaskforProjectManager_Result">
+          <ScalarProperty Name="taskId" ColumnName="taskId" />
+          <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+          <ScalarProperty Name="taskProjectManagerId" ColumnName="taskProjectManagerId" />
+          <ScalarProperty Name="taskName" ColumnName="taskName" />
+          <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+          <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+          <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+          <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Project_InsteadOfDelete" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_tbl_Project_InsteadOfDelete" />
+    <FunctionImportMapping FunctionImportName="sp_update_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_Manager" />
+    <FunctionImportMapping FunctionImportName="sp_update_PASSWORD" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_PASSWORD" />
+    <FunctionImportMapping FunctionImportName="sp_update_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_Personel" />
+    <FunctionImportMapping FunctionImportName="sp_update_Project" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_Project" />
+    <FunctionImportMapping FunctionImportName="sp_update_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_ProjectManager" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

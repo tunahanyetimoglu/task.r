@@ -1,0 +1,1197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjeGorevTakipSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjeGorevTakipSistemi.dbo.tbl_Login' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Login">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="mail" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="role" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Manager">
+          <Key>
+            <PropertyRef Name="managerId" />
+          </Key>
+          <Property Name="managerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="managerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="managerSurname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="managerTeam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="managerMail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="managerStartDate" Type="date" Nullable="false" />
+          <Property Name="managerLocation" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Personel">
+          <Key>
+            <PropertyRef Name="personelId" />
+          </Key>
+          <Property Name="personelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personelName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="personelSurname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="personelTeam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="personelMail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="personelStartDate" Type="date" Nullable="false" />
+          <Property Name="personelLocation" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjeGorevTakipSistemi.dbo.tbl_PersonProject' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_PersonProject">
+          <Key>
+            <PropertyRef Name="personelId" />
+            <PropertyRef Name="projectId" />
+          </Key>
+          <Property Name="personelId" Type="int" Nullable="false" />
+          <Property Name="projectId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Project">
+          <Key>
+            <PropertyRef Name="projectId" />
+          </Key>
+          <Property Name="projectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="projectProjectManagerId" Type="int" Nullable="false" />
+          <Property Name="projectName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="projectStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectStartDate" Type="date" Nullable="false" />
+          <Property Name="projectDeadLine" Type="date" Nullable="false" />
+          <Property Name="projectLastUpdated" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ProjectManager">
+          <Key>
+            <PropertyRef Name="projectManagerId" />
+          </Key>
+          <Property Name="projectManagerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="projectManagerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectManagerSurname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectManagerTeam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectManagerEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectManagerStartDate" Type="date" Nullable="false" />
+          <Property Name="projectManagerLocation" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_TaskforPersonel">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="taskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taskProjectId" Type="int" Nullable="false" />
+          <Property Name="taskPersonId" Type="int" Nullable="false" />
+          <Property Name="taskName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="taskDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="taskStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="taskDeadLine" Type="date" Nullable="false" />
+          <Property Name="taskLastUpdated" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_TaskforProjectManager">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="taskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taskProjectId" Type="int" Nullable="false" />
+          <Property Name="taskProjectManagerId" Type="int" Nullable="false" />
+          <Property Name="taskName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="taskDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="taskStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="taskDeadLine" Type="date" Nullable="false" />
+          <Property Name="taskLastUpdated" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_PersonProject_tbl_Personel">
+          <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="1" />
+          <End Role="tbl_PersonProject" Type="Self.tbl_PersonProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Personel">
+              <PropertyRef Name="personelId" />
+            </Principal>
+            <Dependent Role="tbl_PersonProject">
+              <PropertyRef Name="personelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_PersonProject_tbl_Project">
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+          <End Role="tbl_PersonProject" Type="Self.tbl_PersonProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Project">
+              <PropertyRef Name="projectId" />
+            </Principal>
+            <Dependent Role="tbl_PersonProject">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Project_tbl_ProjectManager">
+          <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="1" />
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProjectManager">
+              <PropertyRef Name="projectManagerId" />
+            </Principal>
+            <Dependent Role="tbl_Project">
+              <PropertyRef Name="projectProjectManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Task_tbl_Personel">
+          <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="1" />
+          <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Personel">
+              <PropertyRef Name="personelId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforPersonel">
+              <PropertyRef Name="taskPersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Task_tbl_Project">
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+          <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Project">
+              <PropertyRef Name="projectId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforPersonel">
+              <PropertyRef Name="taskProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_TaskforProjectManager_tbl_Project">
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+          <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Project">
+              <PropertyRef Name="projectId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforProjectManager">
+              <PropertyRef Name="taskProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+          <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="1" />
+          <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProjectManager">
+              <PropertyRef Name="projectManagerId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforProjectManager">
+              <PropertyRef Name="taskProjectManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="personel_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_TaskforPersonel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_delete_TaskforProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_excludePersonelFromProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="personelId" Type="int" Mode="In" />
+          <Parameter Name="projectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getAvailablePersonelByProjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="projectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getPersonelByProjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="projectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getProjectsByPersonelId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="personelId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_includePersoneltoProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="personId" Type="int" Mode="In" />
+          <Parameter Name="projcetId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="managerName" Type="varchar" Mode="In" />
+          <Parameter Name="managerSurname" Type="varchar" Mode="In" />
+          <Parameter Name="managerTeam" Type="varchar" Mode="In" />
+          <Parameter Name="managerMail" Type="varchar" Mode="In" />
+          <Parameter Name="managerStartDate" Type="date" Mode="In" />
+          <Parameter Name="managerLocation" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="personelName" Type="varchar" Mode="In" />
+          <Parameter Name="personelSurname" Type="varchar" Mode="In" />
+          <Parameter Name="personelTeam" Type="varchar" Mode="In" />
+          <Parameter Name="personelMail" Type="varchar" Mode="In" />
+          <Parameter Name="personelStartDate" Type="date" Mode="In" />
+          <Parameter Name="personelLocation" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="projectProjectManagerId" Type="int" Mode="In" />
+          <Parameter Name="projectName" Type="varchar" Mode="In" />
+          <Parameter Name="projectDescription" Type="varchar" Mode="In" />
+          <Parameter Name="projectStatus" Type="varchar" Mode="In" />
+          <Parameter Name="projectStartDate" Type="date" Mode="In" />
+          <Parameter Name="projectDeadLine" Type="date" Mode="In" />
+          <Parameter Name="projectLastUpdated" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="projectManagerName" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerSurname" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerTeam" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerEmail" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerStartDate" Type="date" Mode="In" />
+          <Parameter Name="projectManagerLocation" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_TaskforPersonel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="taskProjectId" Type="int" Mode="In" />
+          <Parameter Name="taskPersonId" Type="int" Mode="In" />
+          <Parameter Name="taskName" Type="varchar" Mode="In" />
+          <Parameter Name="taskDescription" Type="varchar" Mode="In" />
+          <Parameter Name="taskStatus" Type="varchar" Mode="In" />
+          <Parameter Name="taskDeadLine" Type="date" Mode="In" />
+          <Parameter Name="taskLastUpdated" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_TaskforProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="taskProjectId" Type="int" Mode="In" />
+          <Parameter Name="taskPersonId" Type="int" Mode="In" />
+          <Parameter Name="taskName" Type="varchar" Mode="In" />
+          <Parameter Name="taskDescription" Type="varchar" Mode="In" />
+          <Parameter Name="taskStatus" Type="varchar" Mode="In" />
+          <Parameter Name="taskDeadLine" Type="date" Mode="In" />
+          <Parameter Name="taskLastUpdated" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_report_PersonnelinProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="project_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_report_TaskinProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="project_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_select_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_select_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_select_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_select_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_select_TaskforPersonel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="project_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_select_TaskforProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_tbl_Project_InsteadOfDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="projectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_update_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="managerName" Type="varchar" Mode="In" />
+          <Parameter Name="managerSurname" Type="varchar" Mode="In" />
+          <Parameter Name="managerTeam" Type="varchar" Mode="In" />
+          <Parameter Name="managerMail" Type="varchar" Mode="In" />
+          <Parameter Name="managerStartDate" Type="date" Mode="In" />
+          <Parameter Name="managerLocation" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_update_PASSWORD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_update_Personel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="personelName" Type="varchar" Mode="In" />
+          <Parameter Name="personelSurname" Type="varchar" Mode="In" />
+          <Parameter Name="personelTeam" Type="varchar" Mode="In" />
+          <Parameter Name="personelMail" Type="varchar" Mode="In" />
+          <Parameter Name="personelStartDate" Type="date" Mode="In" />
+          <Parameter Name="personelLocation" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_update_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="projectProjectManagerId" Type="int" Mode="In" />
+          <Parameter Name="projectName" Type="varchar" Mode="In" />
+          <Parameter Name="projectDescription" Type="varchar" Mode="In" />
+          <Parameter Name="projectStatus" Type="varchar" Mode="In" />
+          <Parameter Name="projectStartDate" Type="date" Mode="In" />
+          <Parameter Name="projectDeadLine" Type="date" Mode="In" />
+          <Parameter Name="projectLastUpdated" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_update_ProjectManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="projectManagerName" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerSurname" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerTeam" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerEmail" Type="varchar" Mode="In" />
+          <Parameter Name="projectManagerStartDate" Type="date" Mode="In" />
+          <Parameter Name="projectManagerLocation" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ProjeGorevTakipSistemiModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Manager" EntityType="Self.tbl_Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Personel" EntityType="Self.tbl_Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Project" EntityType="Self.tbl_Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProjectManager" EntityType="Self.tbl_ProjectManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TaskforPersonel" EntityType="Self.tbl_TaskforPersonel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TaskforProjectManager" EntityType="Self.tbl_TaskforProjectManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Login" EntityType="Self.tbl_Login" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Login].[id] AS [id], 
+    [tbl_Login].[mail] AS [mail], 
+    [tbl_Login].[password] AS [password], 
+    [tbl_Login].[role] AS [role]
+    FROM [dbo].[tbl_Login] AS [tbl_Login]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_PersonProject" EntityType="Self.tbl_PersonProject" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_PersonProject].[personelId] AS [personelId], 
+    [tbl_PersonProject].[projectId] AS [projectId]
+    FROM [dbo].[tbl_PersonProject] AS [tbl_PersonProject]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tbl_PersonProject_tbl_Personel" Association="Self.FK_tbl_PersonProject_tbl_Personel">
+            <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+            <End Role="tbl_PersonProject" EntitySet="tbl_PersonProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_PersonProject_tbl_Project" Association="Self.FK_tbl_PersonProject_tbl_Project">
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+            <End Role="tbl_PersonProject" EntitySet="tbl_PersonProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Project_tbl_ProjectManager" Association="Self.FK_tbl_Project_tbl_ProjectManager">
+            <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Task_tbl_Personel" Association="Self.FK_tbl_Task_tbl_Personel">
+            <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+            <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Task_tbl_Project" Association="Self.FK_tbl_Task_tbl_Project">
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+            <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_Project" Association="Self.FK_tbl_TaskforProjectManager_tbl_Project">
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+            <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager" Association="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+            <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+            <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjeGorevTakipSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_Manager">
+          <Key>
+            <PropertyRef Name="managerId" />
+          </Key>
+          <Property Name="managerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="managerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="managerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="managerTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="managerMail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="managerStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="managerLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Personel">
+          <Key>
+            <PropertyRef Name="personelId" />
+          </Key>
+          <Property Name="personelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="personelSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="personelTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="personelMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="personelStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="personelLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_TaskforPersonel" Relationship="Self.FK_tbl_Task_tbl_Personel" FromRole="tbl_Personel" ToRole="tbl_TaskforPersonel" />
+          <NavigationProperty Name="tbl_Project" Relationship="Self.tbl_PersonProject" FromRole="tbl_Personel" ToRole="tbl_Project" />
+        </EntityType>
+        <EntityType Name="tbl_Project">
+          <Key>
+            <PropertyRef Name="projectId" />
+          </Key>
+          <Property Name="projectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectProjectManagerId" Type="Int32" Nullable="false" />
+          <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projectDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projectStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="projectDeadLine" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="projectLastUpdated" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tbl_ProjectManager" Relationship="Self.FK_tbl_Project_tbl_ProjectManager" FromRole="tbl_Project" ToRole="tbl_ProjectManager" />
+          <NavigationProperty Name="tbl_TaskforPersonel" Relationship="Self.FK_tbl_Task_tbl_Project" FromRole="tbl_Project" ToRole="tbl_TaskforPersonel" />
+          <NavigationProperty Name="tbl_TaskforProjectManager" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_Project" FromRole="tbl_Project" ToRole="tbl_TaskforProjectManager" />
+          <NavigationProperty Name="tbl_Personel" Relationship="Self.tbl_PersonProject" FromRole="tbl_Project" ToRole="tbl_Personel" />
+        </EntityType>
+        <EntityType Name="tbl_ProjectManager">
+          <Key>
+            <PropertyRef Name="projectManagerId" />
+          </Key>
+          <Property Name="projectManagerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projectManagerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projectManagerTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projectManagerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projectManagerStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="projectManagerLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_Project" Relationship="Self.FK_tbl_Project_tbl_ProjectManager" FromRole="tbl_ProjectManager" ToRole="tbl_Project" />
+          <NavigationProperty Name="tbl_TaskforProjectManager" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager" FromRole="tbl_ProjectManager" ToRole="tbl_TaskforProjectManager" />
+        </EntityType>
+        <EntityType Name="tbl_TaskforPersonel">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="taskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taskProjectId" Type="Int32" Nullable="false" />
+          <Property Name="taskPersonId" Type="Int32" Nullable="false" />
+          <Property Name="taskName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taskDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taskStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taskDeadLine" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="taskLastUpdated" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tbl_Personel" Relationship="Self.FK_tbl_Task_tbl_Personel" FromRole="tbl_TaskforPersonel" ToRole="tbl_Personel" />
+          <NavigationProperty Name="tbl_Project" Relationship="Self.FK_tbl_Task_tbl_Project" FromRole="tbl_TaskforPersonel" ToRole="tbl_Project" />
+        </EntityType>
+        <EntityType Name="tbl_TaskforProjectManager">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="taskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taskProjectId" Type="Int32" Nullable="false" />
+          <Property Name="taskProjectManagerId" Type="Int32" Nullable="false" />
+          <Property Name="taskName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taskDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taskStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taskDeadLine" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="taskLastUpdated" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tbl_Project" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_Project" FromRole="tbl_TaskforProjectManager" ToRole="tbl_Project" />
+          <NavigationProperty Name="tbl_ProjectManager" Relationship="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager" FromRole="tbl_TaskforProjectManager" ToRole="tbl_ProjectManager" />
+        </EntityType>
+        <EntityType Name="tbl_Login">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="mail" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="role" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_Task_tbl_Personel">
+          <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="1" />
+          <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Personel">
+              <PropertyRef Name="personelId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforPersonel">
+              <PropertyRef Name="taskPersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Project_tbl_ProjectManager">
+          <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="1" />
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProjectManager">
+              <PropertyRef Name="projectManagerId" />
+            </Principal>
+            <Dependent Role="tbl_Project">
+              <PropertyRef Name="projectProjectManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Task_tbl_Project">
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+          <End Role="tbl_TaskforPersonel" Type="Self.tbl_TaskforPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Project">
+              <PropertyRef Name="projectId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforPersonel">
+              <PropertyRef Name="taskProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_TaskforProjectManager_tbl_Project">
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="1" />
+          <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Project">
+              <PropertyRef Name="projectId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforProjectManager">
+              <PropertyRef Name="taskProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+          <End Role="tbl_ProjectManager" Type="Self.tbl_ProjectManager" Multiplicity="1" />
+          <End Role="tbl_TaskforProjectManager" Type="Self.tbl_TaskforProjectManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProjectManager">
+              <PropertyRef Name="projectManagerId" />
+            </Principal>
+            <Dependent Role="tbl_TaskforProjectManager">
+              <PropertyRef Name="taskProjectManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_PersonProject">
+          <End Role="tbl_Personel" Type="Self.tbl_Personel" Multiplicity="*" />
+          <End Role="tbl_Project" Type="Self.tbl_Project" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ProjeGorevTakipSistemiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tbl_Manager" EntityType="Self.tbl_Manager" />
+          <EntitySet Name="tbl_Personel" EntityType="Self.tbl_Personel" />
+          <EntitySet Name="tbl_Project" EntityType="Self.tbl_Project" />
+          <EntitySet Name="tbl_ProjectManager" EntityType="Self.tbl_ProjectManager" />
+          <EntitySet Name="tbl_TaskforPersonel" EntityType="Self.tbl_TaskforPersonel" />
+          <EntitySet Name="tbl_TaskforProjectManager" EntityType="Self.tbl_TaskforProjectManager" />
+          <EntitySet Name="tbl_Login" EntityType="Self.tbl_Login" />
+          <AssociationSet Name="FK_tbl_Task_tbl_Personel" Association="Self.FK_tbl_Task_tbl_Personel">
+            <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+            <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Project_tbl_ProjectManager" Association="Self.FK_tbl_Project_tbl_ProjectManager">
+            <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Task_tbl_Project" Association="Self.FK_tbl_Task_tbl_Project">
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+            <End Role="tbl_TaskforPersonel" EntitySet="tbl_TaskforPersonel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_Project" Association="Self.FK_tbl_TaskforProjectManager_tbl_Project">
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+            <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_TaskforProjectManager_tbl_ProjectManager" Association="Self.FK_tbl_TaskforProjectManager_tbl_ProjectManager">
+            <End Role="tbl_ProjectManager" EntitySet="tbl_ProjectManager" />
+            <End Role="tbl_TaskforProjectManager" EntitySet="tbl_TaskforProjectManager" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_PersonProject" Association="Self.tbl_PersonProject">
+            <End Role="tbl_Personel" EntitySet="tbl_Personel" />
+            <End Role="tbl_Project" EntitySet="tbl_Project" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_Manager">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_Personel">
+          <Parameter Name="personel_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_ProjectManager">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_TaskforPersonel" />
+          <FunctionImport Name="sp_delete_TaskforProjectManager" />
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_excludePersonelFromProject">
+            <Parameter Name="personelId" Mode="In" Type="Int32" />
+            <Parameter Name="projectId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getAvailablePersonelByProjectId" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_getAvailablePersonelByProjectId_Result)">
+          <Parameter Name="projectId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getPersonelByProjectId" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_getPersonelByProjectId_Result)">
+          <Parameter Name="projectId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getProjectsByPersonelId" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_getProjectsByPersonelId_Result)">
+          <Parameter Name="personelId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_includePersoneltoProject">
+            <Parameter Name="personId" Mode="In" Type="Int32" />
+            <Parameter Name="projcetId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_Manager">
+            <Parameter Name="managerName" Mode="In" Type="String" />
+            <Parameter Name="managerSurname" Mode="In" Type="String" />
+            <Parameter Name="managerTeam" Mode="In" Type="String" />
+            <Parameter Name="managerMail" Mode="In" Type="String" />
+            <Parameter Name="managerStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="managerLocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_Personel">
+            <Parameter Name="personelName" Mode="In" Type="String" />
+            <Parameter Name="personelSurname" Mode="In" Type="String" />
+            <Parameter Name="personelTeam" Mode="In" Type="String" />
+            <Parameter Name="personelMail" Mode="In" Type="String" />
+            <Parameter Name="personelStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="personelLocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_Project">
+            <Parameter Name="projectProjectManagerId" Mode="In" Type="Int32" />
+            <Parameter Name="projectName" Mode="In" Type="String" />
+            <Parameter Name="projectDescription" Mode="In" Type="String" />
+            <Parameter Name="projectStatus" Mode="In" Type="String" />
+            <Parameter Name="projectStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="projectDeadLine" Mode="In" Type="DateTime" />
+            <Parameter Name="projectLastUpdated" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_ProjectManager">
+            <Parameter Name="projectManagerName" Mode="In" Type="String" />
+            <Parameter Name="projectManagerSurname" Mode="In" Type="String" />
+            <Parameter Name="projectManagerTeam" Mode="In" Type="String" />
+            <Parameter Name="projectManagerEmail" Mode="In" Type="String" />
+            <Parameter Name="projectManagerStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="projectManagerLocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_TaskforPersonel">
+            <Parameter Name="taskProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="taskPersonId" Mode="In" Type="Int32" />
+            <Parameter Name="taskName" Mode="In" Type="String" />
+            <Parameter Name="taskDescription" Mode="In" Type="String" />
+            <Parameter Name="taskStatus" Mode="In" Type="String" />
+            <Parameter Name="taskDeadLine" Mode="In" Type="DateTime" />
+            <Parameter Name="taskLastUpdated" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_TaskforProjectManager">
+            <Parameter Name="taskProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="taskPersonId" Mode="In" Type="Int32" />
+            <Parameter Name="taskName" Mode="In" Type="String" />
+            <Parameter Name="taskDescription" Mode="In" Type="String" />
+            <Parameter Name="taskStatus" Mode="In" Type="String" />
+            <Parameter Name="taskDeadLine" Mode="In" Type="DateTime" />
+            <Parameter Name="taskLastUpdated" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_report_PersonnelinProject" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_report_PersonnelinProject_Result)">
+          <Parameter Name="project_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_report_TaskinProject" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_report_TaskinProject_Result)">
+          <Parameter Name="project_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_select_Manager" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_Manager_Result)" />
+          <FunctionImport Name="sp_select_Personel" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_Personel_Result)" />
+          <FunctionImport Name="sp_select_Project" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_Project_Result)" />
+          <FunctionImport Name="sp_select_ProjectManager" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_ProjectManager_Result)" />
+          <FunctionImport Name="sp_select_TaskforPersonel" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_TaskforPersonel_Result)" >
+          <Parameter Name="project_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_select_TaskforProjectManager" ReturnType="Collection(ProjeGorevTakipSistemiModel.sp_select_TaskforProjectManager_Result)" />
+          <FunctionImport Name="sp_tbl_Project_InsteadOfDelete">
+          <Parameter Name="projectId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_Manager">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="managerName" Mode="In" Type="String" />
+            <Parameter Name="managerSurname" Mode="In" Type="String" />
+            <Parameter Name="managerTeam" Mode="In" Type="String" />
+            <Parameter Name="managerMail" Mode="In" Type="String" />
+            <Parameter Name="managerStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="managerLocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_PASSWORD">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_Personel">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="personelName" Mode="In" Type="String" />
+            <Parameter Name="personelSurname" Mode="In" Type="String" />
+            <Parameter Name="personelTeam" Mode="In" Type="String" />
+            <Parameter Name="personelMail" Mode="In" Type="String" />
+            <Parameter Name="personelStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="personelLocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_Project">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="projectProjectManagerId" Mode="In" Type="Int32" />
+            <Parameter Name="projectName" Mode="In" Type="String" />
+            <Parameter Name="projectDescription" Mode="In" Type="String" />
+            <Parameter Name="projectStatus" Mode="In" Type="String" />
+            <Parameter Name="projectStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="projectDeadLine" Mode="In" Type="DateTime" />
+            <Parameter Name="projectLastUpdated" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_ProjectManager">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="projectManagerName" Mode="In" Type="String" />
+            <Parameter Name="projectManagerSurname" Mode="In" Type="String" />
+            <Parameter Name="projectManagerTeam" Mode="In" Type="String" />
+            <Parameter Name="projectManagerEmail" Mode="In" Type="String" />
+            <Parameter Name="projectManagerStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="projectManagerLocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_getAvailablePersonelByProjectId_Result">
+          <Property Type="Int32" Name="personelId" Nullable="false" />
+          <Property Type="String" Name="personelName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelTeam" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelMail" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="personelStartDate" Nullable="false" />
+          <Property Type="String" Name="personelLocation" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_getPersonelByProjectId_Result">
+          <Property Type="Int32" Name="personelId" Nullable="false" />
+          <Property Type="String" Name="personelName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelTeam" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelMail" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="personelStartDate" Nullable="false" />
+          <Property Type="String" Name="personelLocation" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_getProjectsByPersonelId_Result">
+          <Property Type="Int32" Name="projectId" Nullable="false" />
+          <Property Type="Int32" Name="projectProjectManagerId" Nullable="false" />
+          <Property Type="String" Name="projectName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="projectDescription" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="projectStatus" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="projectStartDate" Nullable="false" />
+          <Property Type="DateTime" Name="projectDeadLine" Nullable="false" />
+          <Property Type="DateTime" Name="projectLastUpdated" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_report_PersonnelinProject_Result">
+          <Property Type="String" Name="personelName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelLocation" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_report_TaskinProject_Result">
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="taskDescription" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="taskStatus" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_select_Manager_Result">
+          <Property Type="Int32" Name="managerId" Nullable="false" />
+          <Property Type="String" Name="managerName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="managerSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="managerTeam" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="managerMail" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="managerStartDate" Nullable="false" />
+          <Property Type="String" Name="managerLocation" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_select_Personel_Result">
+          <Property Type="Int32" Name="personelId" Nullable="false" />
+          <Property Type="String" Name="personelName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelTeam" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="personelMail" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="personelStartDate" Nullable="false" />
+          <Property Type="String" Name="personelLocation" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_select_Project_Result">
+          <Property Type="Int32" Name="projectId" Nullable="false" />
+          <Property Type="Int32" Name="projectProjectManagerId" Nullable="false" />
+          <Property Type="String" Name="projectName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="projectDescription" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="projectStatus" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="projectStartDate" Nullable="false" />
+          <Property Type="DateTime" Name="projectDeadLine" Nullable="false" />
+          <Property Type="DateTime" Name="projectLastUpdated" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_select_ProjectManager_Result">
+          <Property Type="Int32" Name="projectManagerId" Nullable="false" />
+          <Property Type="String" Name="projectManagerName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="projectManagerSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="projectManagerTeam" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="projectManagerEmail" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="projectManagerStartDate" Nullable="false" />
+          <Property Type="String" Name="projectManagerLocation" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_select_TaskforPersonel_Result">
+          <Property Type="Int32" Name="taskId" Nullable="false" />
+          <Property Type="Int32" Name="taskProjectId" Nullable="false" />
+          <Property Type="Int32" Name="taskPersonId" Nullable="false" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="taskDescription" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="taskStatus" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="taskDeadLine" Nullable="false" />
+          <Property Type="DateTime" Name="taskLastUpdated" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_select_TaskforProjectManager_Result">
+          <Property Type="Int32" Name="taskId" Nullable="false" />
+          <Property Type="Int32" Name="taskProjectId" Nullable="false" />
+          <Property Type="Int32" Name="taskProjectManagerId" Nullable="false" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="taskDescription" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="taskStatus" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="taskDeadLine" Nullable="false" />
+          <Property Type="DateTime" Name="taskLastUpdated" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjeGorevTakipSistemiModelStoreContainer" CdmEntityContainer="ProjeGorevTakipSistemiEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Manager">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Manager">
+              <MappingFragment StoreEntitySet="tbl_Manager">
+                <ScalarProperty Name="managerId" ColumnName="managerId" />
+                <ScalarProperty Name="managerName" ColumnName="managerName" />
+                <ScalarProperty Name="managerSurname" ColumnName="managerSurname" />
+                <ScalarProperty Name="managerTeam" ColumnName="managerTeam" />
+                <ScalarProperty Name="managerMail" ColumnName="managerMail" />
+                <ScalarProperty Name="managerStartDate" ColumnName="managerStartDate" />
+                <ScalarProperty Name="managerLocation" ColumnName="managerLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Personel">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Personel">
+              <MappingFragment StoreEntitySet="tbl_Personel">
+                <ScalarProperty Name="personelId" ColumnName="personelId" />
+                <ScalarProperty Name="personelName" ColumnName="personelName" />
+                <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+                <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+                <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+                <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+                <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Project">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Project">
+              <MappingFragment StoreEntitySet="tbl_Project">
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="projectProjectManagerId" ColumnName="projectProjectManagerId" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+                <ScalarProperty Name="projectStatus" ColumnName="projectStatus" />
+                <ScalarProperty Name="projectStartDate" ColumnName="projectStartDate" />
+                <ScalarProperty Name="projectDeadLine" ColumnName="projectDeadLine" />
+                <ScalarProperty Name="projectLastUpdated" ColumnName="projectLastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProjectManager">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_ProjectManager">
+              <MappingFragment StoreEntitySet="tbl_ProjectManager">
+                <ScalarProperty Name="projectManagerId" ColumnName="projectManagerId" />
+                <ScalarProperty Name="projectManagerName" ColumnName="projectManagerName" />
+                <ScalarProperty Name="projectManagerSurname" ColumnName="projectManagerSurname" />
+                <ScalarProperty Name="projectManagerTeam" ColumnName="projectManagerTeam" />
+                <ScalarProperty Name="projectManagerEmail" ColumnName="projectManagerEmail" />
+                <ScalarProperty Name="projectManagerStartDate" ColumnName="projectManagerStartDate" />
+                <ScalarProperty Name="projectManagerLocation" ColumnName="projectManagerLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TaskforPersonel">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_TaskforPersonel">
+              <MappingFragment StoreEntitySet="tbl_TaskforPersonel">
+                <ScalarProperty Name="taskId" ColumnName="taskId" />
+                <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+                <ScalarProperty Name="taskPersonId" ColumnName="taskPersonId" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+                <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+                <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+                <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TaskforProjectManager">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_TaskforProjectManager">
+              <MappingFragment StoreEntitySet="tbl_TaskforProjectManager">
+                <ScalarProperty Name="taskId" ColumnName="taskId" />
+                <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+                <ScalarProperty Name="taskProjectManagerId" ColumnName="taskProjectManagerId" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+                <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+                <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+                <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Login">
+            <EntityTypeMapping TypeName="ProjeGorevTakipSistemiModel.tbl_Login">
+              <MappingFragment StoreEntitySet="tbl_Login">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tbl_PersonProject" TypeName="ProjeGorevTakipSistemiModel.tbl_PersonProject" StoreEntitySet="tbl_PersonProject">
+            <EndProperty Name="tbl_Personel">
+              <ScalarProperty Name="personelId" ColumnName="personelId" />
+            </EndProperty>
+            <EndProperty Name="tbl_Project">
+              <ScalarProperty Name="projectId" ColumnName="projectId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_delete_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_Manager" />
+          <FunctionImportMapping FunctionImportName="sp_delete_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_Personel" />
+          <FunctionImportMapping FunctionImportName="sp_delete_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_ProjectManager" />
+          <FunctionImportMapping FunctionImportName="sp_delete_TaskforPersonel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_TaskforPersonel" />
+          <FunctionImportMapping FunctionImportName="sp_delete_TaskforProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_delete_TaskforProjectManager" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_excludePersonelFromProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_excludePersonelFromProject" />
+          <FunctionImportMapping FunctionImportName="sp_getAvailablePersonelByProjectId" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_getAvailablePersonelByProjectId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_getAvailablePersonelByProjectId_Result">
+                <ScalarProperty Name="personelId" ColumnName="personelId" />
+                <ScalarProperty Name="personelName" ColumnName="personelName" />
+                <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+                <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+                <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+                <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+                <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getPersonelByProjectId" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_getPersonelByProjectId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_getPersonelByProjectId_Result">
+                <ScalarProperty Name="personelId" ColumnName="personelId" />
+                <ScalarProperty Name="personelName" ColumnName="personelName" />
+                <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+                <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+                <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+                <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+                <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getProjectsByPersonelId" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_getProjectsByPersonelId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_getProjectsByPersonelId_Result">
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="projectProjectManagerId" ColumnName="projectProjectManagerId" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+                <ScalarProperty Name="projectStatus" ColumnName="projectStatus" />
+                <ScalarProperty Name="projectStartDate" ColumnName="projectStartDate" />
+                <ScalarProperty Name="projectDeadLine" ColumnName="projectDeadLine" />
+                <ScalarProperty Name="projectLastUpdated" ColumnName="projectLastUpdated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_includePersoneltoProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_includePersoneltoProject" />
+          <FunctionImportMapping FunctionImportName="sp_insert_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_Manager" />
+          <FunctionImportMapping FunctionImportName="sp_insert_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_Personel" />
+          <FunctionImportMapping FunctionImportName="sp_insert_Project" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_Project" />
+          <FunctionImportMapping FunctionImportName="sp_insert_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_ProjectManager" />
+          <FunctionImportMapping FunctionImportName="sp_insert_TaskforPersonel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_TaskforPersonel" />
+          <FunctionImportMapping FunctionImportName="sp_insert_TaskforProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_insert_TaskforProjectManager" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_report_PersonnelinProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_report_PersonnelinProject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_report_PersonnelinProject_Result">
+                <ScalarProperty Name="personelName" ColumnName="personelName" />
+                <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+                <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_report_TaskinProject" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_report_TaskinProject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_report_TaskinProject_Result">
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+                <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_select_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_Manager">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_Manager_Result">
+                <ScalarProperty Name="managerId" ColumnName="managerId" />
+                <ScalarProperty Name="managerName" ColumnName="managerName" />
+                <ScalarProperty Name="managerSurname" ColumnName="managerSurname" />
+                <ScalarProperty Name="managerTeam" ColumnName="managerTeam" />
+                <ScalarProperty Name="managerMail" ColumnName="managerMail" />
+                <ScalarProperty Name="managerStartDate" ColumnName="managerStartDate" />
+                <ScalarProperty Name="managerLocation" ColumnName="managerLocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_select_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_Personel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_Personel_Result">
+                <ScalarProperty Name="personelId" ColumnName="personelId" />
+                <ScalarProperty Name="personelName" ColumnName="personelName" />
+                <ScalarProperty Name="personelSurname" ColumnName="personelSurname" />
+                <ScalarProperty Name="personelTeam" ColumnName="personelTeam" />
+                <ScalarProperty Name="personelMail" ColumnName="personelMail" />
+                <ScalarProperty Name="personelStartDate" ColumnName="personelStartDate" />
+                <ScalarProperty Name="personelLocation" ColumnName="personelLocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_select_Project" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_Project">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_Project_Result">
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="projectProjectManagerId" ColumnName="projectProjectManagerId" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+                <ScalarProperty Name="projectStatus" ColumnName="projectStatus" />
+                <ScalarProperty Name="projectStartDate" ColumnName="projectStartDate" />
+                <ScalarProperty Name="projectDeadLine" ColumnName="projectDeadLine" />
+                <ScalarProperty Name="projectLastUpdated" ColumnName="projectLastUpdated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_select_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_ProjectManager">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_ProjectManager_Result">
+                <ScalarProperty Name="projectManagerId" ColumnName="projectManagerId" />
+                <ScalarProperty Name="projectManagerName" ColumnName="projectManagerName" />
+                <ScalarProperty Name="projectManagerSurname" ColumnName="projectManagerSurname" />
+                <ScalarProperty Name="projectManagerTeam" ColumnName="projectManagerTeam" />
+                <ScalarProperty Name="projectManagerEmail" ColumnName="projectManagerEmail" />
+                <ScalarProperty Name="projectManagerStartDate" ColumnName="projectManagerStartDate" />
+                <ScalarProperty Name="projectManagerLocation" ColumnName="projectManagerLocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_select_TaskforPersonel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_TaskforPersonel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_TaskforPersonel_Result">
+                <ScalarProperty Name="taskId" ColumnName="taskId" />
+                <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+                <ScalarProperty Name="taskPersonId" ColumnName="taskPersonId" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+                <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+                <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+                <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_select_TaskforProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_select_TaskforProjectManager">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjeGorevTakipSistemiModel.sp_select_TaskforProjectManager_Result">
+                <ScalarProperty Name="taskId" ColumnName="taskId" />
+                <ScalarProperty Name="taskProjectId" ColumnName="taskProjectId" />
+                <ScalarProperty Name="taskProjectManagerId" ColumnName="taskProjectManagerId" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />
+                <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
+                <ScalarProperty Name="taskDeadLine" ColumnName="taskDeadLine" />
+                <ScalarProperty Name="taskLastUpdated" ColumnName="taskLastUpdated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_tbl_Project_InsteadOfDelete" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_tbl_Project_InsteadOfDelete" />
+          <FunctionImportMapping FunctionImportName="sp_update_Manager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_Manager" />
+          <FunctionImportMapping FunctionImportName="sp_update_PASSWORD" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_PASSWORD" />
+          <FunctionImportMapping FunctionImportName="sp_update_Personel" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_Personel" />
+          <FunctionImportMapping FunctionImportName="sp_update_Project" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_Project" />
+          <FunctionImportMapping FunctionImportName="sp_update_ProjectManager" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_update_ProjectManager" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProjeGorevTakipSistemiModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fdc793094c5848fd98f17f43b052e89a" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.sysdiagram" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.tbl_Manager" Width="1.5" PointX="2.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.tbl_Personel" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.tbl_Project" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.tbl_ProjectManager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.tbl_TaskforPersonel" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.tbl_TaskforProjectManager" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjeGorevTakipSistemiModel.tbl_Login" Width="1.5" PointX="4.75" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="ProjeGorevTakipSistemiModel.FK_tbl_Task_tbl_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjeGorevTakipSistemiModel.FK_tbl_Project_tbl_ProjectManager" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjeGorevTakipSistemiModel.FK_tbl_Task_tbl_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjeGorevTakipSistemiModel.FK_tbl_TaskforProjectManager_tbl_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjeGorevTakipSistemiModel.FK_tbl_TaskforProjectManager_tbl_ProjectManager" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjeGorevTakipSistemiModel.tbl_PersonProject" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
